@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:islami_app_m1/HomePage.dart';
+import 'package:islami_app_m1/providers/app_config_provider.dart';
 import 'package:islami_app_m1/quran/SuraDetailsScreen.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp( MyApp());
+  runApp( ChangeNotifierProvider(create: (BuildContext context) {
+    return AppConfigProvider();
+  },
+  child: MyApp()));
 }
 class MyThemeData{
   static final primaryColor= Color.fromARGB(255, 183, 147, 95);
@@ -15,8 +22,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<AppConfigProvider>(context);
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Islami',
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      locale: Locale(provider.appLanguage),
       theme: ThemeData(
         appBarTheme: AppBarTheme(
           backgroundColor: Colors.white,

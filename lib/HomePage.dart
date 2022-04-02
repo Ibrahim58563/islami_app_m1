@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:islami_app_m1/hadith/hadithTab.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:islami_app_m1/main.dart';
 import 'package:islami_app_m1/quran/quranTab.dart';
 import 'package:islami_app_m1/radio/radioTab.dart';
 import 'package:islami_app_m1/sebha/sebhaTab.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:islami_app_m1/settings/settings_tab.dart';
 class HomePage extends StatefulWidget
 {
  static const String routeName = "Home";
@@ -47,17 +49,18 @@ class _HomePageState extends State<HomePage> {
             unselectedItemColor: MyThemeData.unSelectedIconColor,
             currentIndex: currentPage,
             items: [
-              BottomNavigationBarItem(icon: Icon(Icons.radio,size: 30,),label: 'radio'),
-              BottomNavigationBarItem(icon: Image.asset('images/book.png',width: 30,),label: 'hadith'),
-              BottomNavigationBarItem(icon: Image.asset('images/sebha.png',width: 30),label: 'sebha'),
-              BottomNavigationBarItem(icon: Image.asset('images/quran.png',width: 30),label: 'quran'),
+              BottomNavigationBarItem(icon: Icon(Icons.radio,size: 30,),label:AppLocalizations.of(context)!.quran),
+              BottomNavigationBarItem(icon: Image.asset('images/book.png',width: 30,),label: AppLocalizations.of(context)!.hadith),
+              BottomNavigationBarItem(icon: Image.asset('images/sebha.png',width: 30),label: AppLocalizations.of(context)!.tasbeh),
+              BottomNavigationBarItem(icon: Image.asset('images/quran.png',width: 30),label: AppLocalizations.of(context)!.radio),
+              BottomNavigationBarItem(icon: Icon(Icons.settings,size: 30,),label:AppLocalizations.of(context)!.settings),
 
             ],),
           ),
           appBar: AppBar(
             elevation: 0,
             centerTitle: true,
-            title: Text('Islami',style: TextStyle(
+            title: Text(AppLocalizations.of(context)!.app_title,style: TextStyle(
               color: MyThemeData.selectedIconColor,
 
             ),),
@@ -74,6 +77,7 @@ class _HomePageState extends State<HomePage> {
     HadithTab(),
     SebhaTab(),
     QuranTab(),
+    SettingsTab(),
 
   ];
 }
